@@ -24,7 +24,6 @@ using namespace VeJa::Plugins::Oscillators;
 enum{
     CvPitchInput,
     CvVelocityInput,
-    CvGateInput,
     CvMODinput,
     AUDIO_output,
     VCO_Waveform,
@@ -54,7 +53,6 @@ public:
         
     float *cv_pitch_input;
     float *cv_velocity_input;
-    float *cv_gate_put;
     float *cv_mod_input;
     float *output;
     float *vco_waveform;
@@ -103,9 +101,6 @@ void S6_vco::connect_port(LV2_Handle instance, uint32_t port, void *data)
             break;
         case CvVelocityInput:
             self->cv_velocity_input = (float*) data;
-            break;
-        case CvGateInput:
-            self->cv_gate_put = (float*) data;
             break;
         case CvMODinput:
             self->cv_mod_input = (float*) data;
@@ -159,7 +154,6 @@ void S6_vco::run(LV2_Handle instance, uint32_t n_samples)
     {
         float cv_pitch = self->cv_pitch_input[i];
         float cv_velocity = self->cv_velocity_input[i];
-        float cv_gate = self->cv_gate_put[i];
         float cv_mod = self->cv_mod_input[i];
 
         if (cv_velocity != 0)
@@ -167,9 +161,9 @@ void S6_vco::run(LV2_Handle instance, uint32_t n_samples)
             self->prev_velocity = cv_velocity;
         }
 
-        if ((cv_gate == 0) && (cv_velocity == 0))
+        if (cv_velocity == 0)
         {   
-            self->prev_velocity = 0;
+            self->prev_velocity = 0.0000000001;
         }
         
         if (pwm_sync == 0)
