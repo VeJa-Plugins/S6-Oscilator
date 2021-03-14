@@ -14,7 +14,7 @@
 #include "lv2/lv2plug.in/ns/lv2core/lv2.h"
 
 /**********************************************************************************************************************************************************/
-#define PLUGIN_URI "http://VeJaPlugins.com/plugins/Release/m8vco"
+#define PLUGIN_URI "http://VeJaPlugins.com/plugins/Release/s6Vco"
 #define MAX_OUTPUT_BUFFER_LENGHT 256
 #define VCF_LOW_PASS_MODE 0
 #define WAVETABLE_SIZE 32768
@@ -37,13 +37,13 @@ enum{
 };
 
 
-class Mars_8{
+class S6_vco{
 public:
-    Mars_8()
+    S6_vco()
     {
         vco = new Oscillator<float>(48000 ,440 ,WAVETABLE_SIZE);
     }
-    ~Mars_8() {}
+    ~S6_vco() {}
     static LV2_Handle instantiate(const LV2_Descriptor* descriptor, double samplerate, const char* bundle_path, const LV2_Feature* const* features);
     static void activate(LV2_Handle instance);
     static void deactivate(LV2_Handle instance);
@@ -83,19 +83,19 @@ float  MAP(float x, float Omin, float Omax, float Nmin, float Nmax)
 }      
 
 /**********************************************************************************************************************************************************/
-LV2_Handle Mars_8::instantiate(const LV2_Descriptor*   descriptor,
+LV2_Handle S6_vco::instantiate(const LV2_Descriptor*   descriptor,
 double                              samplerate,
 const char*                         bundle_path,
 const LV2_Feature* const* features)
 {
-    Mars_8* self = new Mars_8();
+    S6_vco* self = new S6_vco();
 
     return (LV2_Handle)self; 
 }
 /**********************************************************************************************************************************************************/
-void Mars_8::connect_port(LV2_Handle instance, uint32_t port, void *data)
+void S6_vco::connect_port(LV2_Handle instance, uint32_t port, void *data)
 {
-    Mars_8* self = (Mars_8*)instance;
+    S6_vco* self = (S6_vco*)instance;
     switch (port)
     {
         case CvPitchInput:
@@ -137,14 +137,14 @@ void Mars_8::connect_port(LV2_Handle instance, uint32_t port, void *data)
     }
 }
 /**********************************************************************************************************************************************************/
-void Mars_8::activate(LV2_Handle instance)
+void S6_vco::activate(LV2_Handle instance)
 {
 }
 
 /**********************************************************************************************************************************************************/
-void Mars_8::run(LV2_Handle instance, uint32_t n_samples)
+void S6_vco::run(LV2_Handle instance, uint32_t n_samples)
 {
-    Mars_8* self = (Mars_8*)instance;
+    S6_vco* self = (S6_vco*)instance;
 
     float vco_wave = *self->vco_waveform;
     float vco_low = *self->vco_mode;
@@ -194,25 +194,25 @@ void Mars_8::run(LV2_Handle instance, uint32_t n_samples)
 }   
 
 /**********************************************************************************************************************************************************/
-void Mars_8::deactivate(LV2_Handle instance)
+void S6_vco::deactivate(LV2_Handle instance)
 {
     // TODO: include the deactivate function code here
 }
 /**********************************************************************************************************************************************************/
-void Mars_8::cleanup(LV2_Handle instance)
+void S6_vco::cleanup(LV2_Handle instance)
 {
-  delete ((Mars_8 *) instance); 
+  delete ((S6_vco *) instance); 
 }
 /**********************************************************************************************************************************************************/
 static const LV2_Descriptor Descriptor = {
     PLUGIN_URI,
-    Mars_8::instantiate,
-    Mars_8::connect_port,
-    Mars_8::activate,
-    Mars_8::run,
-    Mars_8::deactivate,
-    Mars_8::cleanup,
-    Mars_8::extension_data
+    S6_vco::instantiate,
+    S6_vco::connect_port,
+    S6_vco::activate,
+    S6_vco::run,
+    S6_vco::deactivate,
+    S6_vco::cleanup,
+    S6_vco::extension_data
 };
 /**********************************************************************************************************************************************************/
 LV2_SYMBOL_EXPORT
@@ -222,7 +222,7 @@ const LV2_Descriptor* lv2_descriptor(uint32_t index)
     else return NULL;
 }
 /**********************************************************************************************************************************************************/
-const void* Mars_8::extension_data(const char* uri)
+const void* S6_vco::extension_data(const char* uri)
 {
     return NULL;
 }

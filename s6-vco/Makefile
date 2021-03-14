@@ -1,5 +1,5 @@
 
-NAME = m8-vco
+NAME = s6-vco
 
 # installation path
 INSTALL_PATH = /usr/local/lib/lv2

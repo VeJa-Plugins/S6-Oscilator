@@ -10,14 +10,14 @@
 @prefix midi: <http://lv2plug.in/ns/ext/midi#> .
 @prefix urid: <http://lv2plug.in/ns/ext/urid#> .
 
-<http://VeJaPlugins.com/plugins/Release/m8vco> 
+<http://VeJaPlugins.com/plugins/Release/s6Vco> 
 a lv2:Plugin, mod:ControlVoltagePlugin;
 lv2:requiredFeature urid:map ;
 
-doap:name "M8 VCO";
+doap:name "S6 Oscilator";
 
 doap:developer [
-    foaf:name "Jarno & Jan";
+    foaf:name "VeJa Plugins";
     foaf:homepage <>;
     foaf:mbox <mailto:jan@moddevices.com>;
     ];
@@ -32,7 +32,7 @@ doap:maintainer [
     lv2:microVersion 2;
 
 rdfs:comment """
-CV module that contains the VCO used inside the Mars-8 project 
+CV module that contains the VCO used inside the Saturn-6 project 
 
 The CV Envelope Trigger Input and the CV Velocity Input are the inputs that keeps the VCO active.
 When CV Velocity Input is active there will be output. 
@@ -44,28 +44,28 @@ lv2:port
     a lv2:InputPort, lv2:CVPort, mod:CVPort;
     lv2:index 0;
     lv2:symbol "CvPitchInput";
-    lv2:name "CV Pitch Input";
+    lv2:name "Pitch Input";
 ]
 ,
 [
     a lv2:InputPort, lv2:CVPort, mod:CVPort;
     lv2:index 1;
     lv2:symbol "CvVelocityInput";
-    lv2:name "CV Velocity Input";
+    lv2:name "Velocity Input";
 ]
 ,
 [
     a lv2:InputPort, lv2:CVPort, mod:CVPort;
     lv2:index 2;
     lv2:symbol "CvGateInput";
-    lv2:name "CV Envelope Trigger Input";
+    lv2:name "Envelope Trigger Input";
 ]
 ,
 [
     a lv2:InputPort, lv2:CVPort, mod:CVPort;
     lv2:index 3;
     lv2:symbol "CvMODinp";
-    lv2:name "CV MOD Input";
+    lv2:name "MOD Input";
 ]
 ,
 [
@@ -79,14 +79,14 @@ lv2:port
     a lv2:InputPort, lv2:ControlPort;
     lv2:index 5;
     lv2:symbol "VCO_Waveform";
-    lv2:name "VCO Waveform";
+    lv2:name "Waveform";
     lv2:portProperty lv2:enumeration , lv2:integer ;
     lv2:default 0 ;
     lv2:minimum 0 ;
     lv2:maximum 5 ;
     lv2:scalePoint
     [
-        rdfs:label "sin" ;
+        rdfs:label "sine" ;
         rdf:value 0 
     ] , [
         rdfs:label "triangle" ;
@@ -107,7 +107,7 @@ lv2:port
     a lv2:InputPort, lv2:ControlPort;
     lv2:index 6;
     lv2:symbol "VCO_Mode";
-    lv2:name "VCO Mode";
+    lv2:name "Mode";
     lv2:portProperty lv2:enumeration , lv2:integer ;
     lv2:default 0 ;
     lv2:minimum -3 ;
@@ -126,7 +126,7 @@ lv2:port
     a lv2:InputPort, lv2:ControlPort;
     lv2:index 7;
     lv2:symbol "VCO_Range";
-    lv2:name "VCO Range";
+    lv2:name "Range";
     lv2:portProperty lv2:enumeration , lv2:integer ;
     lv2:default 0 ;
     lv2:minimum -1 ;
@@ -151,7 +151,7 @@ lv2:port
     a lv2:InputPort, lv2:ControlPort;
     lv2:index 8;
     lv2:symbol "VCO_Finetune";
-    lv2:name "VCO Fine tune";
+    lv2:name "Fine tune";
     lv2:default 0 ;
     lv2:minimum -10.0 ;
     lv2:maximum 10.0 ;
@@ -161,14 +161,14 @@ lv2:port
     a lv2:InputPort, lv2:ControlPort;
     lv2:index 9;
     lv2:symbol "PWM_Mode";
-    lv2:name "PWM Modulion Mode";
+    lv2:name "PWM Control";
     lv2:portProperty lv2:enumeration , lv2:integer ;
     lv2:default 1 ;
     lv2:minimum 0 ;
     lv2:maximum 1 ;
     lv2:scalePoint
     [
-        rdfs:label "Modulated" ;
+        rdfs:label "MOD Input" ;
         rdf:value 0 
     ] , [
         rdfs:label "Manual" ;

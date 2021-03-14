@@ -1,5 +1,5 @@
 EFFECTS_DIR = \
-m8-vco
+s6-vco
 
 ifeq ($(MOD),1)
 EFFECTS_DIR += HardwareBypass
